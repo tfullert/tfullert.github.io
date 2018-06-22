@@ -9,4 +9,4 @@ Howdy!  My name is Tyler Fullerton and I am a Solutions Engineer for Neustar's S
 
 It will take some time to get everything posted up here.  If you have any questions please reach out to me and I'll work to get it answered.
 
-- [Tyler](mailto:tyler.fullerton@team.neustar)
+\- [Tyler](mailto:tyler.fullerton@team.neustar)
