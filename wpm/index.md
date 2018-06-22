@@ -1,0 +1,3 @@
+- What you should learn
+- The three most important Selenium commands
+- Reusing code
