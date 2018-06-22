@@ -1,3 +1,3 @@
-- What you should learn
+- [The basics of WPM scripting](wpm/posts/0-basics.md)
 - The three most important Selenium commands
 - Reusing code
