@@ -1,4 +1,4 @@
-## Welcome to Neustar Tools
+## **Welcome to Neustar Tools**
 
 Howdy!  My name is Tyler Fullerton and I am a Solutions Engineer for Neustar's Security Services division.  I've spent a lot of time over the years developing scripts for our Web Performance Monitoring (WPM) tool and often find myself writing and re-writing the same chunk of code.  So I've decided to create a blog that will act as a repository of scripting examples to be used on Neustar's WPM monitoring and load testing platform.  I can't believe it's taken me this long!  Anyway, if you are a user of WPM I hope you find something that saves you some time.  If there is some task you're looking to accomplish please let me know and I'll see if I can add it to this blog.
 
