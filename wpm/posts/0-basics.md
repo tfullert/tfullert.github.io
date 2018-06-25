@@ -29,9 +29,12 @@ Regardless of whether your writing VU or RBU scripts you are going to need to be
 
 - [Console Tab](https://developers.google.com/web/tools/chrome-devtools/console/): Great for [testing out xpath expressions](https://stackoverflow.com/questions/22571267/how-to-verify-an-xpath-expression-in-chrome-developers-tool-or-firefoxs-firebug).  I also use it to test some JavaScript that I'm having difficulty with.
 - [Network Tab](https://datawookie.netlify.com/blog/2016/09/view-post-data-using-chrome-developer-tools/): Inspecting the body of a POST request is almost as easy as inspecting an element!
-- Element Inspection: Just right-click on an element (link, button, image, etc.) within the web page and there should be an *inspect* context-menu item.  Select that and it will take you right to the element within the source/DOM.  It's that easy!
+- Element Inspection: Just right-click on an element (link, button, image, etc.) within the web page and there should be an *inspect* context-menu item.  Select that and it will take you right to the element within the source/DOM which is helpful for understanding your options for xpath expression creation.  It's that easy!
 
 ## JavaScript
+All WPM scripts are written in JavaScript so it is essential to understand the basics.  There are some great resources out there including [The Modern JavaScript Tutorial](http://javascript.info/) and [JavaScript.com](https://www.javascript.com/learn/strings).  WPM's predecessor, Webmetrics, used an uunstructured proprietary language and so all the time I spent developing scripts for it felt like wasted time.  That's not the case with WPM.  JavaScript is one of the core technologies of the web so anytime you spend writing automation scripts for WPM is time well spent.
+
+As you get more comfortable with performance monitoring and script development you might want to start researching more advanced JavaScript concepts such as the [JavaScript's event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop) or how JavaScript downloads/executes/blocks in a browser.  These topics can help you write better JavaScript or understand how to interpret your monitoring results.  People much smarter than I have written lots on the topics and a quick Google search should net some really good results.  The book [Secrets of the JavaScript Ninja](https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/1617292850/) covers these topics and I highly recommend it.
 
 ## Selenium 3.0
 
