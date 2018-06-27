@@ -37,5 +37,6 @@ All WPM scripts are written in JavaScript so it is essential to understand the b
 As you get more comfortable with performance monitoring and script development you might want to start researching more advanced JavaScript concepts such as the [JavaScript's event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop) or how JavaScript downloads/executes/blocks in a browser.  These topics can help you write better JavaScript or understand how to interpret your monitoring results.  People much smarter than I have written lots on the topics and a quick Google search should net some really good results.  The book [Secrets of the JavaScript Ninja](https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/1617292850/) covers these topics and I highly recommend it.
 
 ## Selenium 3.0
+Selenium is an open-source framework for automating browser actions.  Neustar uses Selenium for its RBU monitors, specifically we use Selenium 3.0.  Historically, with Selenium 1.0 (RC) a server was required to run tests
 
 ## Apache HttpClient
