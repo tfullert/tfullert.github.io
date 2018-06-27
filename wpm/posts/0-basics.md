@@ -39,8 +39,7 @@ As you get more comfortable with performance monitoring and script development y
 ## Selenium 3.0
 Selenium is an open-source framework for automating browser actions.  Neustar uses Selenium for its RBU monitors, specifically we use Selenium 3.0.  With Selenium 3.0 the original Selenium Core was replaced with the WebDriver API so you will see lots of references to *driver* or *webDriver* within your scripts.  There is lots of documentation available from both the [Selenium community](https://www.seleniumhq.org/docs/03_webdriver.jsp) and [Neustar](http://docs.wpm.neustar.biz/testscript-api/biz/neustar/wpm/api/WebDriver.html) so you should be able to get started real quickly.  In fact, most code I write involves one of these 3 lines:
 
-''' javascript
-
+```javascript
 /# Request a specific page
 driver.get("http:\/\/www.example.com");
 
@@ -49,8 +48,7 @@ driver.findElement(By.xpath("//a\[@id='my_username']")).sendKeys("username");
 
 /# Click on a button, link, element.
 driver.findElement(By.xpath("//a\[@id='my_button']")).click();
-
-'''
+```
 
 There is more to script development than that for sure and there's even some code that is specific to Neustar for measuring page/request performance.  But, if you remember those 3 lines and learn how to create xpath expressions you are 90% of the way there!
 
