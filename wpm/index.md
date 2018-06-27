@@ -1,3 +1,1 @@
 - 2018.06.26 - [The basics of WPM scripting](posts/0-basics.md)
-- The three most important Selenium commands
-- Reusing code
