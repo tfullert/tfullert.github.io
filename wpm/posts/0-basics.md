@@ -40,16 +40,25 @@ As you get more comfortable with performance monitoring and script development y
 Selenium is an open-source framework for automating browser actions.  Neustar uses Selenium for its RBU monitors, specifically we use Selenium 3.0.  With Selenium 3.0 the original Selenium Core was replaced with the WebDriver API so you will see lots of references to *driver* or *webDriver* within your scripts.  There is lots of documentation available from both the [Selenium community](https://www.seleniumhq.org/docs/03_webdriver.jsp) and [Neustar](http://docs.wpm.neustar.biz/testscript-api/biz/neustar/wpm/api/WebDriver.html) so you should be able to get started real quickly.  In fact, most code I write involves one of these 3 lines:
 
 ```javascript
-# Request a specific page
+// Request a specific page
 driver.get("http://www.example.com");
 
-# Enter text into a text field (does not result in an HTTP request).
+// Enter text into a text field (does not result in an HTTP request).
 driver.findElement(By.xpath("//a[@id='my_username']")).sendKeys("username");
 
-# Click on a button, link, element.
+// Click on a button, link, element.
 driver.findElement(By.xpath("//a[@id='my_button']")).click();
 ```
 
 There is more to script development than that for sure and there's even some code that is specific to Neustar for measuring page/request performance.  But, if you remember those 3 lines and learn how to create xpath expressions you are 90% of the way there!
 
 ## Apache HttpClient
+Neustar uses Apache's HttpClient software for two purposes:
+
+- It is used to make the HTTP requests (ex: GET) for VU scripts.
+- It is used to proxy requests for all monitors (VU & RBU).
+
+There are a lot of other things that HttpClient allows you to do in a WPM script, for example we can remap the host file, intercept (and modify) any HTTP request or response, blacklist specific requests, create cookies, and configure SSL.  The documentation is full of goodness that will help you regardless of whether you're developing VUs or RBUs.
+
+## Looking Forward
+This post was intended to give you a basic understanding of the technology that you will want to be familiar with in order to write scripts for the WPM platform.  It is not exhaustive and leaves most of the details for you to explore.  Future blog posts will attempt to fill in more details and provide sample code that can be run on WPM.  Onward and upward!
