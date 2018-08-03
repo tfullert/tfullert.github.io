@@ -26,13 +26,13 @@ var client = driver.openHttpClient();
 This will allow you to intercept/rewrite headers and perform other tasks that can benefit your RBU test.  In the end, the goal is to get a client that you can automate for performance monitoring.  A good way to determine which client type to instantiate is:
 
 - HttpClient if: 
--- You want to do basic tests of GET/POST performance & availability.
--- You want to test an API or other endpoint that only returns text.
--- You just want to measure availability of a page.
+  - You want to do basic tests of GET/POST performance & availability.
+  - You want to test an API or other endpoint that only returns text.
+  - You just want to measure availability of a page.
 - WebDriver + HttpClient if:
--- You want to monitor complex applications that rely on client-side code.
--- You want to simplify script development.
--- You want to have control over the WPM proxy that will make the requests.
+  - You want to monitor complex applications that rely on client-side code.
+  - You want to simplify script development.
+  - You want to have control over the WPM proxy that will make the requests.
 
 For real browser scripts it almost always makes sense to grab instances of both the webDriver and the HttpClient.
 
