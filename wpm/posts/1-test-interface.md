@@ -120,19 +120,21 @@ var driver = openBrowser();
 var client = driver.getHttpClient();
 
 // Define our transaction and steps.
-test.beginTransaction(function() { 
-  test.beginStep("Go to homepage", 5000, function() {
+beginTransaction(function() { 
+  beginStep("Go to homepage", 5000, function() {
     driver.get("http://www.example.com");
   });
 
-  test.beginStep("Click on 'sign in'.", 5000, function() {
+  beginStep("Click on 'sign in'.", 5000, function() {
     driver.findElement(By.xpath("//a[@id='sign-in']")).click();
   });
 
-  test.beginStep("Perform login.", 10000, function() {
+  beginStep("Perform login.", 10000, function() {
     driver.findElement(By.xpath("//input[@id='username']")).sendKeys("myusername");
     driver.findElement(By.xpath("//input[@id='password']")).sendKeys("mypassword");
     driver.findElement(By.xpath("//button[@id='login-submit']")).click();
   });
 });
 ```
+
+The *Test* interface has other goodies we'll get at in future posts.  For now, you have what you need from *Test* in order to get a client, define a transaction, and define some steps.
