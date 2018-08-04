@@ -1,1 +1,2 @@
 - 2018.06.26 - [The basics of WPM scripting](posts/0-basics.md)
+- 2018.08.03 - [Defining Transactions & Steps](posts/1-test-interface.md)
