@@ -2,7 +2,7 @@
 While the [WebDriver](http://docs.wpm.neustar.biz/testscript-api/biz/neustar/wpm/api/WebDriver.html) and [HttpClient](http://docs.wpm.neustar.biz/testscript-api/biz/neustar/wpm/api/HttpClient.html) interfaces provide WPM with the automation routines for controlling an agent (browser in the case of Selenium and simple HTTP client with HttpClient) they do not provide a mechanism for measuring performance and segmenting that performance into logical steps and transactions.  This functionality is provided by Neustar's [Test](http://docs.wpm.neustar.biz/testscript-api/biz/neustar/wpm/api/Test.html) interface which offers a number of different methods that can be helpful in both performance monitoring and load testing.  In today's post I will just be covering the basic components needed to group page load time metrics into logical steps and transactions. 
 
 ## Getting Your Client
-The Test interface provides access to the two client types that you will use to automate actions, WebDriver and HttpClient.  WebDriver is a framework that allows you to control a browser and interact with a web application just as an end-user would.  This approach gives the best visibility into an applications performance and makes scripting easier because the Browser does all the hard work for you.  The browser will execute JavaScript, render CSS, and handle rewriting URLs that may be requested as part of a form submission.  WPM supports both Chrome and Firefox for real browser (RBU) monitoring.  In order to instantiate a webDriver object you will need to have the following call at the top of your script (this is almost always the first line in your script):
+The Test interface provides access to the two client types that you will use to automate actions, WebDriver and HttpClient.  WebDriver is a framework that allows you to control a browser and interact with a web application just as an end-user would.  This approach gives the best visibility into an application's performance and makes scripting easier because the Browser does all the hard work for you.  The browser will execute JavaScript, render CSS, and handle rewriting URLs that may be requested as part of a form submission.  WPM supports both Chrome and Firefox for real browser (RBU) monitoring.  In order to instantiate a webDriver object you will need to have the following call at the top of your script (this is almost always the first line in your script):
 
 ```javascript
 var driver = test.openBrowser();
@@ -16,7 +16,7 @@ The HttpClient on the other hand is a simple interface that emulates various HTT
 var client = test.getHttpClient();
 ```
 
-In addition to acting as a VU for the WPM platform the HttpClient also provides access to some features that allow you to interact with the proxy that sits infront of all requests that are made by the WPM platform.  This allows you to do things like set SSL Certificate versions and modify HTTP request/response headers.  You can also get access to an instance of HttpClient from the webDriver interface as follows:
+In addition to acting as a VU for the WPM platform the HttpClient also provides access to some features that allow you to interact with the proxy that sits in front of all requests that are made by the WPM platform.  This allows you to do things like set SSL Certificate versions and modify HTTP request/response headers.  You can also get access to an instance of HttpClient from the webDriver interface as follows:
 
 ```javascript
 var driver = test.openBrowser();
@@ -58,13 +58,13 @@ This approach is often easier for beginners.  Either approach will work and I wi
 One final comment about transactions, any actions that you want to be counted towards the transaction load time needs to appear *inside* the transaction definition.  Doesn't matter if that's using the first approach (in the function body of the anonymous function) or the second approach (between the *beginTransaction* and *endTransaction* calls).  You can put page/URL requests outside of the transaction definition but the load time they generate will not count towards the final load time.  This is sometimes done to "prime" the cache (which by default is empty):
 
 ```javascript
-// Automate the browser to request the home page.  This will prime the cache but will not contribute to the transaction load time.
-driver.get("http://home.neustar");
+// Code to access a web page outside the transaction.  
+// This will prime the cache but will not contribute to the transaction load time.
 
 // Now define the transaction.  Everything in here will contribute to the transaction load time.
 test.beginTransaction(function() {
-  // Now we're monitoring with a primed cache.
-  driver.get('http://home.neustar');
+  // Code to access the same web page, this time from inside the transaction.
+  // Cache will contain images/objects from the first request. 
 });
 ```
 
@@ -85,17 +85,15 @@ Translating our 3 steps above into code:
 
 ```javascript
 test.beginStep("Go to homepage", 5000, function() {
-  driver.get("http://www.example.com");
+  // Code to request the homepage.
 });
 
 test.beginStep("Click on 'sign in'.", 5000, function() {
-  driver.findElement(By.xpath("//a[@id='sign-in']")).click();
+  // Code to click on the sign in button in the top right-hand corner.
 });
 
 test.beginStep("Perform login.", 10000, function() {
-  driver.findElement(By.xpath("//input[@id='username']")).sendKeys("myusername");
-  driver.findElement(By.xpath("//input[@id='password']")).sendKeys("mypassword");
-  driver.findElement(By.xpath("//button[@id='login-submit']")).click();
+  // Code to enter our username & password into the login form and then click on submit.
 });
 ```
 
@@ -107,7 +105,7 @@ test.beginStep("Go to homepage", 5000);
 test.endStep();
 ```
 
-What you put in a step is up to you and we could have squeezed all three steps into a single *beginStep* method call but that would reduce our visibility into the performance data collected.  You should generally have one call to *beginStep* for each page request made.
+What you put in a step is up to you and we could have squeezed all three steps into a single *beginStep* method call but that would reduce our visibility into the performance data collected.  You should have one call to *beginStep* for each page request made.
 
 ## Conclusion
 Let's put everything together.  The *Test* interface allows you to create a client that will automate actions, define a transaction, manipulate the WPM proxy, and segment performance into separate steps for reporting purposes.  Something that makes our livese easier is that the *Test* interface is rolled into the global namespace of the script so we don't always have to be typing "test.":
@@ -122,17 +120,15 @@ var client = driver.getHttpClient();
 // Define our transaction and steps.
 beginTransaction(function() { 
   beginStep("Go to homepage", 5000, function() {
-    driver.get("http://www.example.com");
+    // Code to request the homepage.
   });
 
   beginStep("Click on 'sign in'.", 5000, function() {
-    driver.findElement(By.xpath("//a[@id='sign-in']")).click();
+    // Code to click on the sign in button in the top right-hand corner.
   });
 
   beginStep("Perform login.", 10000, function() {
-    driver.findElement(By.xpath("//input[@id='username']")).sendKeys("myusername");
-    driver.findElement(By.xpath("//input[@id='password']")).sendKeys("mypassword");
-    driver.findElement(By.xpath("//button[@id='login-submit']")).click();
+    // Code to enter our username & password into the login form and then click on submit.
   });
 });
 ```
