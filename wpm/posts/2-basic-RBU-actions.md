@@ -1,5 +1,5 @@
 ## Introduction
-Last time we discussed some [basics of the *Test* interface](posts/1-test-interface.md) and how it can be used to segment automation actions (re: HTTP page requests) into logical steps for the purpose of script development and eventual graphing/reporting.  That code provides the bones of our final script and as a recap looks like this:
+Last time we discussed some [basics of the Test interface](1-test-interface.md) and how it can be used to segment automation actions (re: HTTP page requests) into logical steps for the purpose of script development and eventual graphing/reporting.  That code provides the bones of our final script and as a recap looks like this:
 
 ```javascript
 // Get the client we'll use for automating tasks.
