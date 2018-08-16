@@ -69,13 +69,15 @@ test.beginTransaction(function() {
 ```
 
 ## Define Your Steps
-Transactions consist of logical steps.  For example, a *login* transaction has multiple steps:
+Transactions consist of logical steps, and later when we're reviewing our data in graphs, we will want the performance for each logical step to be separated.  This is the purpose of the *beginStep/endStep* methods which we will see in a second.  
+
+The first thing we must do is understand what the logical steps of our transaction are.  This can be done by simply writing out a plain-English list of steps.  For example, a *login* transaction might have these steps:
 
 - Go to homepage.
 - Click on *sign in* button in the top right-hand corner.
 - Enter username and password in the sign in form and click on the *login* button.
 
-Defining your transaction as I've done above is a great first step when developing a script.  Now we just need to translate it into actions to perform and logically group those actions together with calls to the *beginStep* method:
+Now we just need to translate this set of steps into actions to perform and logically group those actions together with calls to the *beginStep* method:
 
 ```javascript
 test.beginStep(description, timeout(ms), function(){});
