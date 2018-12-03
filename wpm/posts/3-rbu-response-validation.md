@@ -83,3 +83,6 @@ beginTransaction(function() {
 ```
 
 This approach is a bit cleaner.  The _waitFor_ method will continuously perform the test in the user-defined function until it either gets true or the timeout (30 seconds) is reached.
+
+## Conclusion
+The goal of external monitoring is to alert you to performance issues with your web application.  Those issues can either be slow load times or missing content.  WPM provides many different approaches for validating performance or content but the main approaches are to use _waitForNetworkTrafficToStop_ to check for page load time issues and check the HTML body content of a page for a specific search string.
