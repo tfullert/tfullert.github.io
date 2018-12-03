@@ -35,7 +35,8 @@ beginStep("Go to homepage", 30000, function() {
   // Wait for a login button to be present on the page
   waitFor(function() {
     return driver.getElement("//button[@type='submit']").getText().toLowerCase().startsWith("login")
-  }, 20000);});
+  }, 20000);
+});
 ```
 
 This approach uses the _waitFor_ function which takes two parameters; the first one is a callback function which must return true or false, the second parameter is a timeout value in milliseconds.  The _waitFor_ function waits for the user defined (callback) function to return true and will wait up until the timeout has expired (ex: 20 seconds).  This is a much more flexible check since you can perform multiple checks within the callback function and then consolidate the results into a single true/false return value.  
@@ -64,4 +65,21 @@ beginTransaction(function() {
 });
 ```
 
-We want to perform the page load time check _before_ the content check because we want to make sure that the content should be there before we check for it.  The content verification occurs on line 23 and is limited in scope to just the innerText of the HTML body tag.  Because we've limited the scope of our search to just the body tag you will want to check in a browser to make sure the text you are testing is indeed in the HTML body.  You can do this using the browser developer tools that come with any of the major browser versions (I prefer Google's DevTools).  The developer tools allow you to inspect various elements of the page, for example I can execute _document.body.innerText_ from the console and it will show me all the text within the body tag of the page.  I should be able to pick any sub-string within the text returned and use it for my search string.  If you're using Google Chrome you can find out more about Chromes Tools for Web Developers [here](https://developers.google.com/web/tools/chrome-devtools/console/expressions).
+We want to perform the page load time check _before_ the content check because we want to make sure that the content should be there before we check for it.  The content verification occurs by grabbing the text of the HTML body tag and then comparing it to the predefined search string (i.e. "Create an Account").  Because we've limited the scope of our search to just the body tag you will want to check in a browser to make sure the text you are testing is indeed in the HTML body.  You can do this using the browser developer tools that come with any of the major browser versions (I prefer Google's DevTools).  The developer tools allow you to inspect various elements of the page, for example I can execute _document.body.innerText_ from the console and it will show me all the text within the body tag of the page.  I should be able to pick any sub-string within the text returned and use it for my search string.  If you're using Google Chrome you can find out more about Chromes Tools for Web Developers [here](https://developers.google.com/web/tools/chrome-devtools/console/expressions).  As an alternative to the code above we could use the _waitFor_ method:
+
+```javascript
+beginTransaction(function() { 
+  beginStep("Go to homepage", 30000, function() {
+    // Make a page request
+    driver.get("https://home.wpm.neustar.biz/");
+    
+    // Check the content of the page body
+    waitFor(function(){
+      var bodyText = driver.findElement(By.tagName("body")).getText();
+      return bodyText.contains("Create an Account");
+    }, 30000);
+  });
+});
+```
+
+This approach is a bit cleaner.  The _waitFor_ method will continuously perform the test in the user-defined function until it either gets true or the timeout (30 seconds) is reached.
