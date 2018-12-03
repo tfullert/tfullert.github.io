@@ -1,3 +1,4 @@
+- 2018.12.03 - [RBU Response Validation](posts/3-rbu-response-validation.md)
 - 2018.08.16 - [Three basic RBU actions](posts/2-basic-RBU-actions.md)
 - 2018.08.03 - [Defining Transactions & Steps](posts/1-test-interface.md)
 - 2018.06.26 - [The basics of WPM scripting](posts/0-basics.md)
